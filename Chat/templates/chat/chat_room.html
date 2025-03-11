@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakchat - Bakchodikachoda</title>
+</head>
+<body>
+    <h1>Welcome to Bakchodikachoda!</h1>
+    <p>Your username: {{ username }}</p>
+
+    <div>
+        <h3>Messages:</h3>
+        <div style="border: 1px solid #ddd; padding: 10px; height: 300px; overflow-y: scroll;">
+            {% for message in messages %}
+                <p><strong>{{ message.user.username }}:</strong> {{ message.content }}</p>
+            {% empty %}
+                <p>No messages yet. Start the conversation!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
+
