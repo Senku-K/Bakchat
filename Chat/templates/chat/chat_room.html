@@ -1,30 +1,130 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bakchat - Bakchodikachoda</title>
+
+    <!-- Adding basic CSS to improve UI -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-box {
+            border: 1px solid #ddd;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message:last-child {
+            border-bottom: none;
+        }
+
+        .message-content {
+            width: 90%;
+        }
+
+        .username {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .timestamp {
+            font-size: 0.85em;
+            color: #888;
+            margin-left: 10px;
+            text-align: right;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+
+        #send-btn {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #send-btn:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Bakchodikachoda!</h1>
-    <p>Your username: {{ username }}</p>
+    <div class="container">
+        <h1>Welcome to Bakchodikachoda!</h1>
+        <p>Your username: <input type="text" id="username" placeholder="Enter your name"></p>
 
-    <div>
-        <h3>Messages:</h3>
-        <div style="border: 1px solid #ddd; padding: 10px; height: 300px; overflow-y: scroll;">
-            {% for message in messages %}
-                <p><strong>{{ message.user.username }}:</strong> {{ message.content }}</p>
-            {% empty %}
-                <p>No messages yet. Start the conversation!</p>
-            {% endfor %}
+        <div>
+            <h3>Messages:</h3>
+            <div id="chat-box">
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="message-content">
+                            <p><span class="username">{{ message.user.username }}:</span> {{ message.content }}</p>
+                        </div>
+                        <div class="timestamp">
+                            <small>{{ message.timestamp|date:"d/m/Y, H:i:s" }}</small>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No messages yet. Start the conversation!</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <input type="text" id="message" placeholder="Type your message">
+            <button id="send-btn">Send</button>
         </div>
     </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
-    </form>
+    <!-- Linking JavaScript -->
+    <script src="{% static 'js/chat.js' %}"></script>
 </body>
 </html>
-
