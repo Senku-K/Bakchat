@@ -11,7 +11,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212;
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
         }
@@ -20,78 +21,65 @@
             text-align: center;
             color: #4CAF50;
             padding: 20px;
-            background-color: #fff;
+            background-color: #1e1e1e;
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         #chat-box {
-            border: 1px solid #ddd;
+            border: 1px solid #333;
             padding: 15px;
             height: 300px;
             overflow-y: auto;
-            background-color: #fff;
+            background-color: #1e1e1e;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         .message {
             padding: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #444;
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
         }
 
-        .message:last-child {
-            border-bottom: none;
-        }
-
-        .message-content {
-            width: 90%;
-        }
-
-        .username {
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        .timestamp {
-            font-size: 0.85em;
-            color: #888;
-            margin-left: 10px;
-            text-align: right;
-        }
-
-        input[type="text"] {
+        input[type="text"], #send-btn {
+            transition: all 0.3s ease-in-out;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            border: 1px solid #4CAF50;
             padding: 10px;
-            width: 70%;
             border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: #66ff66;
+            box-shadow: 0 0 5px rgba(102, 255, 102, 0.5);
+        }
+
+        input[type="text"]:hover {
+            border-color: #66ff66;
         }
 
         #send-btn {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
         }
 
         #send-btn:hover {
-            background-color: #45a049;
+            background-color: #66ff66;
+            transform: scale(1.05);
         }
 
         .container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #1e1e1e;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
